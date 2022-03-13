@@ -1,4 +1,9 @@
 ﻿@model RentTech.Models.ViewModels.TechItemVM
+
+@{
+    ViewData["Title"] = "Purchase";
+}
+
 <div class="wrapper">
     <div class="checkout container">
         <form id="payment-form" method="post" asp-controller="Checkout" asp-action="Create">

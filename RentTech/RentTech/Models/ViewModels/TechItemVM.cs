@@ -15,5 +15,6 @@
         public int OwnerId { get; set; }
 
         public string Thumbnail { get; set; }
+        public string Nonce { get; set; }
     }
 }
