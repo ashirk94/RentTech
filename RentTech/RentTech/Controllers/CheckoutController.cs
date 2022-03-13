@@ -29,7 +29,8 @@ namespace RentTech.Controllers
                 ItemId = 1,
                 Title = "thing",
                 Description = "a thing",
-                OwnerId = 1
+                OwnerId = 1,
+                Nonce = ""
             };
 
             return View(data);
