@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Braintree;
+using Microsoft.AspNetCore.Mvc;
 using RentTech.Models.DataLayer;
 using RentTech.Models.DomainModels;
 using RentTech.Models.ViewModels;
@@ -15,10 +16,10 @@ namespace RentTech.Controllers
             _techRepository = techRepository;
             _braintreeService = braintreeService;
         }
-        public IActionResult Purchase() //int id
+        public async Task<IActionResult> Purchase(int id) 
         {
-            //var item = _techRepository.GetById(id);
-            //if (item == null) return NotFound();
+            var item = await _techRepository.GetById(id);
+            if (item == null) return NotFound();
 
             var gateway = _braintreeService.GetGateway();
             var clientToken = gateway.ClientToken.Generate();
@@ -26,13 +27,39 @@ namespace RentTech.Controllers
 
             var data = new TechItemVM
             {
-                ItemId = 1,
-                Title = "thing",
-                Description = "a thing",
-                OwnerId = 1
+                ItemId = id,
+                Title = item.Title,
+                Description = item.Description,
+                Nonce = ""
             };
 
             return View(data);
+        }
+        public async Task<IActionResult> Create(TechItemVM model)
+        {
+            var gateway = _braintreeService.GetGateway();
+            var item = await _techRepository.GetById(model.ItemId);
+
+            var request = new TransactionRequest
+            {
+                Amount = Convert.ToDecimal(item.Price),
+                PaymentMethodNonce = model.Nonce,
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
+            };
+
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+
+            if (result.IsSuccess())
+            {
+                return View("Success");
+            }
+            else
+            {
+                return View("Failure");
+            }
         }
     }
 }

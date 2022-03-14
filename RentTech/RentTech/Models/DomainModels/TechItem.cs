@@ -5,18 +5,26 @@ namespace RentTech.Models.DomainModels
     public class TechItem
     {
         [Key]
-        public int ItemId { get; set; }
-
+        public int TechItemId { get; set; }
+        [Required]
+        [StringLength(20, MinimumLength = 2)]
         public string Title { get; set; }
+
+        [StringLength(100, MinimumLength = 4)]
         public string Description { get; set; }
-        public double Price { get; set; } = 0;
-        public int YearsOwned { get; set; } = 0;
-        public string Type { get; set; } = "Misc";
-        public List<string> Tags { get; } //free, low-price, item specifics
-        public DateTime LendDate { get; set; } = DateTime.Now;
-        public DateTime ReturnDate { get; set; } = DateTime.Now.AddDays(7);
-        public int? RenterId { get; set; }
-        public int OwnerId { get; set; }
+        [Required]
+        public double Price { get; set; }
+        [Required]
+        public string Condition { get; set; }
+        [Required]
+        public string Type { get; set; }
+        public List<Tag> Tags { get; set; } //free, low-price, item specifics
+        public DateTime? RentDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public string OwnerId { get; set; }
+        public AppUser Owner { get; set; }
         public string Thumbnail { get; set; }
+
+        public bool IsRented { get; set; }
     }
 }

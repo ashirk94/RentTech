@@ -1,4 +1,5 @@
-﻿using RentTech.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RentTech.Data;
 using RentTech.Models.DomainModels;
 
 namespace RentTech.Models.DataLayer
@@ -11,31 +12,42 @@ namespace RentTech.Models.DataLayer
         {
             _context = context;
         }
-        public IQueryable<TechItem> TechItems => _context.;
-
-        public Task Delete(int id)
+        public IQueryable<TechItem> TechItems
         {
-            throw new NotImplementedException();
+            get
+            {
+                return _context.TechItem.Include(t => t.Owner)
+                    .ThenInclude(t => t.Reviews)
+                    .Include(t => t.Tags);
+            }
         }
 
-        public Task<TechItem> GetById(int id)
+
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            TechItem item = await _context.TechItem.FindAsync(id);
+            _context.TechItem.Remove(item);
         }
 
-        public Task Insert(TechItem obj)
+        public async Task<TechItem> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.TechItem.FindAsync(id);
         }
 
-        public Task Save()
+        public async Task Insert(TechItem obj)
         {
-            throw new NotImplementedException();
+            await _context.TechItem.AddAsync(obj);
         }
 
-        public Task Update(TechItem obj)
+        public async Task Save()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(TechItem obj)
+        {
+            _context.Update(obj);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentTech.Data;
 
@@ -11,9 +12,10 @@ using RentTech.Data;
 namespace RentTech.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220314004951_Domain")]
+    partial class Domain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,6 +297,9 @@ namespace RentTech.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TechItemId"), 1L, 1);
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Condition")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -307,7 +312,7 @@ namespace RentTech.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("OwnerId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -332,7 +337,7 @@ namespace RentTech.Data.Migrations
 
                     b.HasKey("TechItemId");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("TechItem");
 
@@ -397,11 +402,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "A",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a183a6b-1f77-44c4-b7dd-e1ef0805935a",
+                            ConcurrencyStamp = "4624d70b-d2b0-4f91-9138-eeb6f5c0fd6f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "df9ebfd5-c6e6-4ce2-a8b1-72cdbd6a627c",
+                            SecurityStamp = "550a0e0e-516b-4bc8-9433-b53e3b6054a3",
                             TwoFactorEnabled = false,
                             UserName = "ashirk99",
                             FirstName = "Alan",
@@ -412,11 +417,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "B",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42680b4b-f0f4-4cee-9de2-85b42c73b940",
+                            ConcurrencyStamp = "317766f5-0fa7-4b8f-93fc-45381e2abb8e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1019bf67-4064-4994-984e-02aed773d5ad",
+                            SecurityStamp = "3b78446b-dbf9-46d1-9ee2-febb80098000",
                             TwoFactorEnabled = false,
                             UserName = "PraisetheSun",
                             FirstName = "Solaire",
@@ -427,11 +432,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "C",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "90e6b375-d72f-4b12-a32d-4653663d34d6",
+                            ConcurrencyStamp = "4c3a2fc2-419b-4e15-a8ef-faba6c4bf58d",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1326926e-964f-4c1b-b34f-cfbda965dc26",
+                            SecurityStamp = "bbfcd876-ad59-4efe-9017-df1e133bc919",
                             TwoFactorEnabled = false,
                             UserName = "ShotelMan",
                             FirstName = "Lautrec",
@@ -521,11 +526,9 @@ namespace RentTech.Data.Migrations
 
             modelBuilder.Entity("RentTech.Models.DomainModels.TechItem", b =>
                 {
-                    b.HasOne("RentTech.Models.DomainModels.AppUser", "Owner")
+                    b.HasOne("RentTech.Models.DomainModels.AppUser", null)
                         .WithMany("Items")
-                        .HasForeignKey("OwnerId");
-
-                    b.Navigation("Owner");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("RentTech.Models.DomainModels.TechItem", b =>
