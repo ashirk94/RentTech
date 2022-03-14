@@ -3,19 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentTech.Data;
 
 #nullable disable
 
-namespace RentTech.Data.Migrations
+namespace RentTech.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220314010127_Owner")]
-    partial class Owner
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,6 +344,7 @@ namespace RentTech.Data.Migrations
                             IsRented = false,
                             OwnerId = "A",
                             Price = 75.989999999999995,
+                            Thumbnail = "~/images/asus.png",
                             Title = "ASUS Laptop",
                             Type = "Laptop Computer"
                         },
@@ -356,6 +355,7 @@ namespace RentTech.Data.Migrations
                             IsRented = false,
                             OwnerId = "B",
                             Price = 50.0,
+                            Thumbnail = "~/images/ipad.png",
                             Title = "IPad",
                             Type = "Tablet"
                         },
@@ -366,6 +366,7 @@ namespace RentTech.Data.Migrations
                             IsRented = false,
                             OwnerId = "C",
                             Price = 100.0,
+                            Thumbnail = "~/images/ps5.png",
                             Title = "PlayStation 5",
                             Type = "Game Console"
                         });
@@ -399,11 +400,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "A",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a183a6b-1f77-44c4-b7dd-e1ef0805935a",
+                            ConcurrencyStamp = "4ae3c40c-ecf1-4f99-be5e-24aa5efd9b2b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "df9ebfd5-c6e6-4ce2-a8b1-72cdbd6a627c",
+                            SecurityStamp = "b65dff54-d32d-4190-8428-1314b55be774",
                             TwoFactorEnabled = false,
                             UserName = "ashirk99",
                             FirstName = "Alan",
@@ -414,11 +415,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "B",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42680b4b-f0f4-4cee-9de2-85b42c73b940",
+                            ConcurrencyStamp = "1c08d22a-e493-446b-8723-ca0806b7c872",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1019bf67-4064-4994-984e-02aed773d5ad",
+                            SecurityStamp = "03852d33-0b2b-42ca-8fad-5d0755ac9cf0",
                             TwoFactorEnabled = false,
                             UserName = "PraisetheSun",
                             FirstName = "Solaire",
@@ -429,11 +430,11 @@ namespace RentTech.Data.Migrations
                         {
                             Id = "C",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "90e6b375-d72f-4b12-a32d-4653663d34d6",
+                            ConcurrencyStamp = "a272cea0-28b4-43a1-8dd6-d94be5cde2b3",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1326926e-964f-4c1b-b34f-cfbda965dc26",
+                            SecurityStamp = "55bfb941-8500-4ed6-8841-2dbf546ab88b",
                             TwoFactorEnabled = false,
                             UserName = "ShotelMan",
                             FirstName = "Lautrec",

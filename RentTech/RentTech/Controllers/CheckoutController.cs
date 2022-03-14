@@ -30,6 +30,8 @@ namespace RentTech.Controllers
                 ItemId = id,
                 Title = item.Title,
                 Description = item.Description,
+                Price = item.Price,
+                Thumbnail = item.Thumbnail,
                 Nonce = ""
             };
 

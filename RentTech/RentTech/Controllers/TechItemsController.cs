@@ -10,6 +10,7 @@ using RentTech.Models.DomainModels;
 
 namespace RentTech.Controllers
 {
+    //only delete or edit items possible if done by owner user or admin
     public class TechItemsController : Controller
     {
         private readonly ApplicationDbContext _context;

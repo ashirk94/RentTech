@@ -79,7 +79,8 @@ namespace RentTech.Data
                     Price = 75.99,
                     Condition = "Good",
                     Type = "Laptop Computer",
-                    IsRented = false
+                    IsRented = false,
+                    Thumbnail = "~/images/asus.png"
                 },
                 new
                 {
@@ -89,7 +90,8 @@ namespace RentTech.Data
                     Price = 50.00,
                     Condition = "Fair",
                     Type = "Tablet",
-                    IsRented = false
+                    IsRented = false,
+                    Thumbnail = "~/images/ipad.png"
                 },
                 new
                 {
@@ -99,7 +101,8 @@ namespace RentTech.Data
                     Price = 100.00,
                     Condition = "Like-New",
                     Type = "Game Console",
-                    IsRented = false
+                    IsRented = false,
+                    Thumbnail = "~/images/ps5.png"
                 }
             );
         }

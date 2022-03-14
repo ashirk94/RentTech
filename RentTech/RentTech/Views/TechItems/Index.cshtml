@@ -28,20 +28,6 @@
                 @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RentDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReturnDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thumbnail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsRented)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -62,26 +48,8 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
-            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumbnail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRented)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TechItemId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TechItemId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TechItemId">Delete</a>
+                <a class="btn btn-primary" asp-controller="Checkout" asp-action="Purchase" asp-route-id="@item.TechItemId">Rent</a>
             </td>
         </tr>
 }

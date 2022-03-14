@@ -11,10 +11,10 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title" name="Title" asp-for="@Model.Title">@Model.Title</h5>
-                    <p class="card-text">@Model.Description</p>
-                    <p class="card-text">@Model.Price</p>
+                    <p class="card-text" asp-for="@Model.Description">@Model.Description</p>
+                    <p class="card-text" asp-for="@Model.Price">@Model.Price</p>
                 </div>
-                <img style="width: 90%" class="card-img-bottom" src="@Model.Thumbnail" alt="Card image cap" />
+                <img style="width: 90%" class="card-img-bottom" src="@Model.Thumbnail" alt="Card image" />
             </div>
             <section>
                 <div class="bt-drop-in-wrapper">
@@ -42,7 +42,10 @@
 
     braintree.dropin.create({
         authorization: client_token,
-        container: '#bt-dropin'
+        container: '#bt-dropin',
+        paypal: {
+            flow: 'vault'
+        }
     }, function(createErr, instance) {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
