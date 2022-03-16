@@ -17,7 +17,7 @@ namespace RentTech.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -72,77 +72,6 @@ namespace RentTech.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -228,6 +157,133 @@ namespace RentTech.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("RentTech.Models.DomainModels.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReputationScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "A",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "67069265-2d39-4ed7-a3ea-55fb1c865034",
+                            EmailConfirmed = false,
+                            FirstName = "Alan",
+                            LastName = "Shirk",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            ReputationScore = 50,
+                            SecurityStamp = "cfef4432-d64d-4c71-a02b-e25bb6f9cc73",
+                            TwoFactorEnabled = false,
+                            UserName = "ashirk99"
+                        },
+                        new
+                        {
+                            Id = "B",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a845bab2-2fef-444a-a8c9-47b0b420d963",
+                            EmailConfirmed = false,
+                            FirstName = "Solaire",
+                            LastName = "ofAstora",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            ReputationScore = 50,
+                            SecurityStamp = "2d5e28da-3498-4ffd-8628-5d3fba6b7b56",
+                            TwoFactorEnabled = false,
+                            UserName = "PraisetheSun"
+                        },
+                        new
+                        {
+                            Id = "C",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d454a793-c974-4fa6-835f-49b5417b6aec",
+                            EmailConfirmed = false,
+                            FirstName = "Lautrec",
+                            LastName = "ofCarim",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            ReputationScore = 50,
+                            SecurityStamp = "f00dd316-be6a-4c4b-9742-e992c650377c",
+                            TwoFactorEnabled = false,
+                            UserName = "ShotelMan"
+                        });
                 });
 
             modelBuilder.Entity("RentTech.Models.DomainModels.Review", b =>
@@ -344,7 +400,7 @@ namespace RentTech.Migrations
                             IsRented = false,
                             OwnerId = "A",
                             Price = 75.989999999999995,
-                            Thumbnail = "~/images/asus.png",
+                            Thumbnail = "../../images/asus.png",
                             Title = "ASUS Laptop",
                             Type = "Laptop Computer"
                         },
@@ -355,7 +411,7 @@ namespace RentTech.Migrations
                             IsRented = false,
                             OwnerId = "B",
                             Price = 50.0,
-                            Thumbnail = "~/images/ipad.png",
+                            Thumbnail = "../../images/ipad.png",
                             Title = "IPad",
                             Type = "Tablet"
                         },
@@ -366,80 +422,9 @@ namespace RentTech.Migrations
                             IsRented = false,
                             OwnerId = "C",
                             Price = 100.0,
-                            Thumbnail = "~/images/ps5.png",
+                            Thumbnail = "../../images/ps5.png",
                             Title = "PlayStation 5",
                             Type = "Game Console"
-                        });
-                });
-
-            modelBuilder.Entity("RentTech.Models.DomainModels.AppUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfilePicture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReputationScore")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("AppUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "A",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4ae3c40c-ecf1-4f99-be5e-24aa5efd9b2b",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b65dff54-d32d-4190-8428-1314b55be774",
-                            TwoFactorEnabled = false,
-                            UserName = "ashirk99",
-                            FirstName = "Alan",
-                            LastName = "Shirk",
-                            ReputationScore = 50
-                        },
-                        new
-                        {
-                            Id = "B",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c08d22a-e493-446b-8723-ca0806b7c872",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "03852d33-0b2b-42ca-8fad-5d0755ac9cf0",
-                            TwoFactorEnabled = false,
-                            UserName = "PraisetheSun",
-                            FirstName = "Solaire",
-                            LastName = "ofAstora",
-                            ReputationScore = 50
-                        },
-                        new
-                        {
-                            Id = "C",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "a272cea0-28b4-43a1-8dd6-d94be5cde2b3",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "55bfb941-8500-4ed6-8841-2dbf546ab88b",
-                            TwoFactorEnabled = false,
-                            UserName = "ShotelMan",
-                            FirstName = "Lautrec",
-                            LastName = "ofCarim",
-                            ReputationScore = 50
                         });
                 });
 
@@ -454,7 +439,7 @@ namespace RentTech.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("RentTech.Models.DomainModels.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -463,7 +448,7 @@ namespace RentTech.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("RentTech.Models.DomainModels.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -478,7 +463,7 @@ namespace RentTech.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("RentTech.Models.DomainModels.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -487,7 +472,7 @@ namespace RentTech.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("RentTech.Models.DomainModels.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -531,16 +516,16 @@ namespace RentTech.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("RentTech.Models.DomainModels.TechItem", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
             modelBuilder.Entity("RentTech.Models.DomainModels.AppUser", b =>
                 {
                     b.Navigation("Items");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("RentTech.Models.DomainModels.TechItem", b =>
+                {
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

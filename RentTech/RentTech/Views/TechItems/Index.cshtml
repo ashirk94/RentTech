@@ -3,55 +3,29 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="container text-center">
+    <p>
+        <a class="btn btn-info m-5 col-4 display-4" asp-action="Create">Rent out your own item</a>
+    </p>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Condition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+    @foreach (var item in Model)
+    {
+            <h2>
                 @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Condition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            <td>
-                <a class="btn btn-primary" asp-controller="Checkout" asp-action="Purchase" asp-route-id="@item.TechItemId">Rent</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </h2>
+            <h4>
+               Description: @Html.DisplayFor(modelItem => item.Description)
+            </h4>
+            <h4>
+               Cost to Rent: $@Html.DisplayFor(modelItem => item.Price) / 6 months
+            </h4>
+            <h4>
+               Condition: @Html.DisplayFor(modelItem => item.Condition)
+            </h4>
+            <h4>
+               Product Type: @Html.DisplayFor(modelItem => item.Type)
+            </h4>
+        <img src="@item.Thumbnail" /><br />
+        <a class="btn btn-primary mb-5" asp-controller="Checkout" asp-action="Purchase" asp-route-id="@item.TechItemId">Rent</a>
+    }
+</div>

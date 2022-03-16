@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentTech.Migrations
 {
-    public partial class Thumbnail : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,11 +28,10 @@ namespace RentTech.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReputationScore = table.Column<int>(type: "int", nullable: true),
+                    ReputationScore = table.Column<int>(type: "int", nullable: false),
                     ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -237,33 +236,33 @@ namespace RentTech.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "A", 0, "4ae3c40c-ecf1-4f99-be5e-24aa5efd9b2b", "AppUser", null, false, "Alan", "Shirk", false, null, null, null, null, null, false, null, 50, "b65dff54-d32d-4190-8428-1314b55be774", false, null, "ashirk99" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
+                values: new object[] { "A", 0, "67069265-2d39-4ed7-a3ea-55fb1c865034", null, false, "Alan", "Shirk", false, null, null, null, null, null, false, null, 50, "cfef4432-d64d-4c71-a02b-e25bb6f9cc73", false, null, "ashirk99" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "B", 0, "1c08d22a-e493-446b-8723-ca0806b7c872", "AppUser", null, false, "Solaire", "ofAstora", false, null, null, null, null, null, false, null, 50, "03852d33-0b2b-42ca-8fad-5d0755ac9cf0", false, null, "PraisetheSun" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
+                values: new object[] { "B", 0, "a845bab2-2fef-444a-a8c9-47b0b420d963", null, false, "Solaire", "ofAstora", false, null, null, null, null, null, false, null, 50, "2d5e28da-3498-4ffd-8628-5d3fba6b7b56", false, null, "PraisetheSun" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "C", 0, "a272cea0-28b4-43a1-8dd6-d94be5cde2b3", "AppUser", null, false, "Lautrec", "ofCarim", false, null, null, null, null, null, false, null, 50, "55bfb941-8500-4ed6-8841-2dbf546ab88b", false, null, "ShotelMan" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
+                values: new object[] { "C", 0, "d454a793-c974-4fa6-835f-49b5417b6aec", null, false, "Lautrec", "ofCarim", false, null, null, null, null, null, false, null, 50, "f00dd316-be6a-4c4b-9742-e992c650377c", false, null, "ShotelMan" });
 
             migrationBuilder.InsertData(
                 table: "TechItem",
                 columns: new[] { "TechItemId", "Condition", "Description", "IsRented", "OwnerId", "Price", "RentDate", "ReturnDate", "Thumbnail", "Title", "Type" },
-                values: new object[] { 1, "Good", null, false, "A", 75.989999999999995, null, null, "~/images/asus.png", "ASUS Laptop", "Laptop Computer" });
+                values: new object[] { 1, "Good", null, false, "A", 75.989999999999995, null, null, "../../images/asus.png", "ASUS Laptop", "Laptop Computer" });
 
             migrationBuilder.InsertData(
                 table: "TechItem",
                 columns: new[] { "TechItemId", "Condition", "Description", "IsRented", "OwnerId", "Price", "RentDate", "ReturnDate", "Thumbnail", "Title", "Type" },
-                values: new object[] { 2, "Fair", null, false, "B", 50.0, null, null, "~/images/ipad.png", "IPad", "Tablet" });
+                values: new object[] { 2, "Fair", null, false, "B", 50.0, null, null, "../../images/ipad.png", "IPad", "Tablet" });
 
             migrationBuilder.InsertData(
                 table: "TechItem",
                 columns: new[] { "TechItemId", "Condition", "Description", "IsRented", "OwnerId", "Price", "RentDate", "ReturnDate", "Thumbnail", "Title", "Type" },
-                values: new object[] { 3, "Like-New", null, false, "C", 100.0, null, null, "~/images/ps5.png", "PlayStation 5", "Game Console" });
+                values: new object[] { 3, "Like-New", null, false, "C", 100.0, null, null, "../../images/ps5.png", "PlayStation 5", "Game Console" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

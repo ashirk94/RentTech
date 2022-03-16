@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RentTech.Models.DomainModels;
@@ -9,18 +10,23 @@ namespace RentTech.Data
     {
         // password hidden
         private const string USERNAME = "admin";
-        private const string ROLE_NAME = "Admin";
+        private const string ROLE_NAME = "ADMIN";
+        private const string EMAIL = "ashirk94@gmail.com";
         private const string ID1 = "A";
         private const string ID2 = "B";
         private const string ID3 = "C";
-        public static async Task SeedAdminUser(IServiceProvider serviceProvider, string password)
+        private const string ID4 = "D";
+
+        public async static Task Initialize(IServiceProvider serviceProvider, string password)
         {
+            //dbcontext
+            ApplicationDbContext context =
+                serviceProvider.GetRequiredService<ApplicationDbContext>();
             //managers from serviceprovider
             UserManager<AppUser> userManager =
                 serviceProvider.GetRequiredService<UserManager<AppUser>>();
             RoleManager<IdentityRole> roleManager =
                 serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
 
             // if role doesn't exist, create it
             var adminRole = await roleManager.FindByNameAsync(ROLE_NAME);
@@ -31,13 +37,22 @@ namespace RentTech.Data
 
             if (await userManager.FindByNameAsync(USERNAME) == null)
             {
-                var user = new AppUser { UserName = USERNAME };
+                var user = new AppUser
+                {
+                    FirstName = "Alan",
+                    LastName = "Shirk",
+                    Email = EMAIL,
+                    UserName = USERNAME,
+                };
                 var result = await userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, ROLE_NAME);
+                    
                 }
+
             }
+            await context.SaveChangesAsync();
         }
 
         public static void Seed(this ModelBuilder modelBuilder)
@@ -80,7 +95,7 @@ namespace RentTech.Data
                     Condition = "Good",
                     Type = "Laptop Computer",
                     IsRented = false,
-                    Thumbnail = "~/images/asus.png"
+                    Thumbnail = "../../images/asus.png"
                 },
                 new
                 {
@@ -91,7 +106,7 @@ namespace RentTech.Data
                     Condition = "Fair",
                     Type = "Tablet",
                     IsRented = false,
-                    Thumbnail = "~/images/ipad.png"
+                    Thumbnail = "../../images/ipad.png"
                 },
                 new
                 {
@@ -102,7 +117,7 @@ namespace RentTech.Data
                     Condition = "Like-New",
                     Type = "Game Console",
                     IsRented = false,
-                    Thumbnail = "~/images/ps5.png"
+                    Thumbnail = "../../images/ps5.png"
                 }
             );
         }
