@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace RentTech.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,8 +99,8 @@ namespace RentTech.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -143,8 +144,8 @@ namespace RentTech.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -236,17 +237,17 @@ namespace RentTech.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "A", 0, "67069265-2d39-4ed7-a3ea-55fb1c865034", null, false, "Alan", "Shirk", false, null, null, null, null, null, false, null, 50, "cfef4432-d64d-4c71-a02b-e25bb6f9cc73", false, null, "ashirk99" });
+                values: new object[] { "A", 0, "62c0ebb0-f734-4897-8228-9646663f9430", null, false, "Alan", "Shirk", false, null, null, null, null, null, false, null, 50, "2f52275b-d5c3-4df2-a0e6-5d3187314336", false, null, "ashirk99" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "B", 0, "a845bab2-2fef-444a-a8c9-47b0b420d963", null, false, "Solaire", "ofAstora", false, null, null, null, null, null, false, null, 50, "2d5e28da-3498-4ffd-8628-5d3fba6b7b56", false, null, "PraisetheSun" });
+                values: new object[] { "B", 0, "b0c57d73-4a4f-45e2-9ff6-89fcda927c74", null, false, "Solaire", "ofAstora", false, null, null, null, null, null, false, null, 50, "a1838cc6-aa55-4a79-8590-a2b2de30f645", false, null, "PraisetheSun" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "ReputationScore", "SecurityStamp", "TwoFactorEnabled", "UserId", "UserName" },
-                values: new object[] { "C", 0, "d454a793-c974-4fa6-835f-49b5417b6aec", null, false, "Lautrec", "ofCarim", false, null, null, null, null, null, false, null, 50, "f00dd316-be6a-4c4b-9742-e992c650377c", false, null, "ShotelMan" });
+                values: new object[] { "C", 0, "f3ac2cd3-cbbf-4699-b521-b612e70b19b0", null, false, "Lautrec", "ofCarim", false, null, null, null, null, null, false, null, 50, "6401c725-9870-4805-a46f-131151ae4fdb", false, null, "ShotelMan" });
 
             migrationBuilder.InsertData(
                 table: "TechItem",

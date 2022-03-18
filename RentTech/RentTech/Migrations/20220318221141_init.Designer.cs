@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentTech.Data;
 
@@ -11,9 +12,10 @@ using RentTech.Data;
 namespace RentTech.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318221141_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,14 +241,14 @@ namespace RentTech.Migrations
                         {
                             Id = "A",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f471b24e-7a7b-4430-802d-88f2729ba71f",
+                            ConcurrencyStamp = "62c0ebb0-f734-4897-8228-9646663f9430",
                             EmailConfirmed = false,
                             FirstName = "Alan",
                             LastName = "Shirk",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "c2e93785-0ca0-43ef-a54e-e77a73603717",
+                            SecurityStamp = "2f52275b-d5c3-4df2-a0e6-5d3187314336",
                             TwoFactorEnabled = false,
                             UserName = "ashirk99"
                         },
@@ -254,14 +256,14 @@ namespace RentTech.Migrations
                         {
                             Id = "B",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c8395367-b9f1-4f70-935b-28593eae7a84",
+                            ConcurrencyStamp = "b0c57d73-4a4f-45e2-9ff6-89fcda927c74",
                             EmailConfirmed = false,
                             FirstName = "Solaire",
                             LastName = "ofAstora",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "4c4a15d0-df1d-4ff4-a05c-63710274a51f",
+                            SecurityStamp = "a1838cc6-aa55-4a79-8590-a2b2de30f645",
                             TwoFactorEnabled = false,
                             UserName = "PraisetheSun"
                         },
@@ -269,14 +271,14 @@ namespace RentTech.Migrations
                         {
                             Id = "C",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "308d6f5f-82ae-4fc3-aecf-49a3001cc113",
+                            ConcurrencyStamp = "f3ac2cd3-cbbf-4699-b521-b612e70b19b0",
                             EmailConfirmed = false,
                             FirstName = "Lautrec",
                             LastName = "ofCarim",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "cf8b39ee-b264-4e0b-805a-8c0491e552bb",
+                            SecurityStamp = "6401c725-9870-4805-a46f-131151ae4fdb",
                             TwoFactorEnabled = false,
                             UserName = "ShotelMan"
                         });

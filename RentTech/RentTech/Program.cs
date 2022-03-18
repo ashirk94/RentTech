@@ -7,7 +7,7 @@ using RentTech.Models.DomainModels;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("AzureConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -65,11 +65,9 @@ string password = app.Configuration["AdminPassword"];
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 var context = services.GetRequiredService<ApplicationDbContext>();
-
+context.Database.Migrate();
 
 await SeedData.Initialize(services, password);
-
-context.Database.EnsureCreated();
 
 app.Run();
 

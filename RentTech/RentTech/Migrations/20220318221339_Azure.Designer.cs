@@ -12,8 +12,8 @@ using RentTech.Data;
 namespace RentTech.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220316214400_Init")]
-    partial class Init
+    [Migration("20220318221339_Azure")]
+    partial class Azure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,12 +104,10 @@ namespace RentTech.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -146,12 +144,10 @@ namespace RentTech.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -245,14 +241,14 @@ namespace RentTech.Migrations
                         {
                             Id = "A",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "67069265-2d39-4ed7-a3ea-55fb1c865034",
+                            ConcurrencyStamp = "f471b24e-7a7b-4430-802d-88f2729ba71f",
                             EmailConfirmed = false,
                             FirstName = "Alan",
                             LastName = "Shirk",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "cfef4432-d64d-4c71-a02b-e25bb6f9cc73",
+                            SecurityStamp = "c2e93785-0ca0-43ef-a54e-e77a73603717",
                             TwoFactorEnabled = false,
                             UserName = "ashirk99"
                         },
@@ -260,14 +256,14 @@ namespace RentTech.Migrations
                         {
                             Id = "B",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a845bab2-2fef-444a-a8c9-47b0b420d963",
+                            ConcurrencyStamp = "c8395367-b9f1-4f70-935b-28593eae7a84",
                             EmailConfirmed = false,
                             FirstName = "Solaire",
                             LastName = "ofAstora",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "2d5e28da-3498-4ffd-8628-5d3fba6b7b56",
+                            SecurityStamp = "4c4a15d0-df1d-4ff4-a05c-63710274a51f",
                             TwoFactorEnabled = false,
                             UserName = "PraisetheSun"
                         },
@@ -275,14 +271,14 @@ namespace RentTech.Migrations
                         {
                             Id = "C",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d454a793-c974-4fa6-835f-49b5417b6aec",
+                            ConcurrencyStamp = "308d6f5f-82ae-4fc3-aecf-49a3001cc113",
                             EmailConfirmed = false,
                             FirstName = "Lautrec",
                             LastName = "ofCarim",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             ReputationScore = 50,
-                            SecurityStamp = "f00dd316-be6a-4c4b-9742-e992c650377c",
+                            SecurityStamp = "cf8b39ee-b264-4e0b-805a-8c0491e552bb",
                             TwoFactorEnabled = false,
                             UserName = "ShotelMan"
                         });
