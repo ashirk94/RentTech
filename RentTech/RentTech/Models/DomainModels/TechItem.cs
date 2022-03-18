@@ -23,8 +23,8 @@ namespace RentTech.Models.DomainModels
         public DateTime? ReturnDate { get; set; }
         public string OwnerId { get; set; }
         public AppUser Owner { get; set; }
-        public string Thumbnail { get; set; }
+        public string Thumbnail { get; set; } = "No Image";
 
-        public bool IsRented { get; set; }
+        public bool IsRented { get; set; } = false;
     }
 }

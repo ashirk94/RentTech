@@ -23,14 +23,7 @@
             </section>
             @Html.HiddenFor(n => n.Nonce, new { @id = "nonce"})
             <hr />
-            @*<button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>*@
-            <script src="https://checkout.stripe.com/checkout.js" 
-            class="stripe-button"
-            data-key="pk_test_51JbCZFBNmTxXVxUhJ3mqKBVrorqhMnjtUaeBQTrNsYn2ixhPT1oj1zBdLMAAxO6MgRv45C1FEn7Jru3V2nf1aRRg00ywpOHCCV"
-            data-name="ItemShare Payment"
-            data-description="@Model.Title"
-            data-locale="en"
-            data-label="Confirm Payment - $@ViewBag.PaymentAmount"></script>
+            <button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>
         </form>
     </div>
 </div>

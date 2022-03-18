@@ -1,25 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RentTech.Data;
 using RentTech.Models.DomainModels;
+using RentTech.Models.ViewModels;
+using System.Web;
+
 
 namespace RentTech.Controllers
 {
-    //only delete or edit items possible if done by owner user or admin
+    //change so only delete or edit items possible if done by owner user or admin
     public class TechItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public TechItemsController(ApplicationDbContext context)
+        private IWebHostEnvironment _env;
+
+        public TechItemsController(ApplicationDbContext context, IWebHostEnvironment env, UserManager<AppUser> userMngr)
         {
+            _env = env;
             _context = context;
+            _userManager = userMngr;
         }
+        //file upload
+        //private string Upload(TechItemVM item)
+        //{
+        //    var dir = _env.ContentRootPath;
 
+        //    using (var fileStream = new FileStream(Path.Combine(dir, $"images/{item.Title}.png"), 
+        //        FileMode.Create, FileAccess.Write))
+        //    {
+        //        item.File.CopyTo(fileStream);
+        //    }
+        //    return item.Title;
+        //}
         // GET: TechItems
         public async Task<IActionResult> Index()
         {
@@ -47,9 +64,9 @@ namespace RentTech.Controllers
         }
 
         // GET: TechItems/Create
+        [Authorize]
         public IActionResult Create()
         {
-            ViewData["OwnerId"] = new SelectList(_context.Set<AppUser>(), "Id", "Id");
             return View();
         }
 
@@ -58,16 +75,29 @@ namespace RentTech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TechItemId,Title,Description,Price,Condition,Type,RentDate,ReturnDate,OwnerId,Thumbnail,IsRented")] TechItem techItem)
+        public async Task<IActionResult> Create(TechItemVM vm)
         {
+
+            TechItem techItem = new TechItem
+            {
+                Title = vm.Title,
+                Description = vm.Description,
+                Condition = vm.Condition,
+                Price = vm.Price,
+                Type = vm.Type
+            };
+
+            techItem.Owner = await _userManager.GetUserAsync(User);
+            techItem.OwnerId = techItem.Owner.UserId;
+            //techItem.Thumbnail = Upload(vm);
+
             if (ModelState.IsValid)
             {
                 _context.Add(techItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OwnerId"] = new SelectList(_context.Set<AppUser>(), "Id", "Id", techItem.OwnerId);
-            return View(techItem);
+            return View(vm);
         }
 
         // GET: TechItems/Edit/5

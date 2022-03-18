@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using RentTech.Models.ViewModels;
 using RentTech.Models.DomainModels;
-using System.Threading.Tasks;
+using RentTech.Models.ViewModels;
 
 namespace ScandinavianFood.Controllers
 {
@@ -28,7 +27,11 @@ namespace ScandinavianFood.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Username };
+                var user = new AppUser { 
+                    UserName = model.Username,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -84,6 +87,10 @@ namespace ScandinavianFood.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Manage()
+        {
+            return View();
         }
 
         public IActionResult AccessDenied()

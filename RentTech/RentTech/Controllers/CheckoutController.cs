@@ -1,7 +1,6 @@
 ﻿using Braintree;
 using Microsoft.AspNetCore.Mvc;
 using RentTech.Models.DataLayer;
-using RentTech.Models.DomainModels;
 using RentTech.Models.ViewModels;
 
 namespace RentTech.Controllers
@@ -16,7 +15,7 @@ namespace RentTech.Controllers
             _techRepository = techRepository;
             _braintreeService = braintreeService;
         }
-        public async Task<IActionResult> Purchase(int id) 
+        public async Task<IActionResult> Purchase(int id)
         {
             var item = await _techRepository.GetById(id);
             if (item == null) return NotFound();
@@ -31,7 +30,7 @@ namespace RentTech.Controllers
                 Title = item.Title,
                 Description = item.Description,
                 Price = item.Price,
-                Thumbnail = item.Thumbnail,
+                Thumbnail = item.Title,
                 Nonce = ""
             };
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RentTech.Models.DomainModels;
-using System.Collections.Generic;
 
 namespace RentTech.Models.ViewModels
 {

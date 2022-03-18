@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using RentTech.Models.DomainModels;
 
 namespace RentTech.Data
@@ -10,12 +8,11 @@ namespace RentTech.Data
     {
         // password hidden
         private const string USERNAME = "admin";
-        private const string ROLE_NAME = "ADMIN";
+        private const string ROLE_NAME = "Admin";
         private const string EMAIL = "ashirk94@gmail.com";
         private const string ID1 = "A";
         private const string ID2 = "B";
         private const string ID3 = "C";
-        private const string ID4 = "D";
 
         public async static Task Initialize(IServiceProvider serviceProvider, string password)
         {
@@ -48,7 +45,7 @@ namespace RentTech.Data
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, ROLE_NAME);
-                    
+
                 }
 
             }

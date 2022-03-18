@@ -4,7 +4,7 @@ namespace RentTech.Models.DataLayer
 {
     public interface IBraintreeService
     {
-        IBraintreeGateway CreateGateway(); 
+        IBraintreeGateway CreateGateway();
         IBraintreeGateway GetGateway();
     }
 }

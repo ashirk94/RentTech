@@ -1,5 +1,5 @@
-﻿using RentTech.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using RentTech.Models;
 using System.Diagnostics;
 
 namespace RentTech.Controllers
@@ -27,6 +27,11 @@ namespace RentTech.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

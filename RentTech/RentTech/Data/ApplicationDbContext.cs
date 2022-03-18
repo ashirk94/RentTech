@@ -16,5 +16,7 @@ namespace RentTech.Data
             modelBuilder.Seed();
         }
         public DbSet<RentTech.Models.DomainModels.TechItem> TechItem { get; set; }
+        public DbSet<RentTech.Models.DomainModels.Review> Review { get; set; }
+        public DbSet<RentTech.Models.DomainModels.Tag> Tag { get; set; }
     }
 }
