@@ -40,6 +40,8 @@ namespace RentTech.Controllers
         // GET: TechItems
         public async Task<IActionResult> Index()
         {
+            //TODO: make separate page for managing items (admin link)
+            ViewBag.Current = "Browse";
             var applicationDbContext = _context.TechItem.Include(t => t.Owner);
             return View(await applicationDbContext.ToListAsync());
         }

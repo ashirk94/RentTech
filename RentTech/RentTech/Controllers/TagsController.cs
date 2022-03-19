@@ -22,6 +22,7 @@ namespace RentTech.Controllers
         // GET: Tags
         public async Task<IActionResult> Index()
         {
+            ViewBag.Current = "Tags";
             var applicationDbContext = _context.Tag.Include(t => t.Item);
             return View(await applicationDbContext.ToListAsync());
         }

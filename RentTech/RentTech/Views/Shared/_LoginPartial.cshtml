@@ -10,13 +10,13 @@
             <a class="btn nav-link m-auto @(ViewBag.Current == "Admin" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Admin">Manage Users</a>
         </li>
         <li class="nav-item">
-            <a class="btn nav-link m-auto" asp-area="" asp-action="Index" asp-controller="TechItems">Manage Items</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Items" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="TechItems">Manage Items</a>
         </li>
         <li class="nav-item">
-            <a class="btn nav-link m-auto" asp-area="" asp-action="Index" asp-controller="Reviews">Manage Reviews</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Reviews" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Reviews">Manage Reviews</a>
         </li>
         <li class="nav-item">
-            <a class="btn nav-link m-auto" asp-area="" asp-action="Index" asp-controller="Tags">Manage Tags</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Tags" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Tags">Manage Tags</a>
         </li>
     }
     @if (SignInManager.IsSignedIn(User))

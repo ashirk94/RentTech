@@ -25,7 +25,7 @@
             <h4>
                Product Type: @Html.DisplayFor(modelItem => item.Type)
             </h4>
-        <img src="@item.Thumbnail" /><br />
+        <a href="/TechItems/Details/@item.TechItemId"><img src="@item.Thumbnail" alt="@item.Description"/></a><br />
         <a class="btn btn-primary mb-5" asp-controller="Checkout" asp-action="Purchase" asp-route-id="@item.TechItemId">Rent</a>
     }
 </div>

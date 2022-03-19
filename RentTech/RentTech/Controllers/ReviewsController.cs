@@ -22,6 +22,7 @@ namespace RentTech.Controllers
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
+            ViewBag.Current = "Reviews";
             var applicationDbContext = _context.Review.Include(r => r.Item).Include(r => r.Reviewer);
             return View(await applicationDbContext.ToListAsync());
         }
