@@ -1,6 +1,7 @@
 ﻿using Braintree;
 using Microsoft.AspNetCore.Mvc;
 using RentTech.Models.DataLayer;
+using RentTech.Models.DomainModels;
 using RentTech.Models.ViewModels;
 
 namespace RentTech.Controllers
@@ -17,6 +18,8 @@ namespace RentTech.Controllers
         }
         public async Task<IActionResult> Purchase(int id)
         {
+            //used linkin learning payment gateway tutorial as guide
+
             var item = await _techRepository.GetById(id);
             if (item == null) return NotFound();
 
@@ -36,6 +39,7 @@ namespace RentTech.Controllers
 
             return View(data);
         }
+        [HttpPost]
         public async Task<IActionResult> Create(TechItemVM model)
         {
             var gateway = _braintreeService.GetGateway();

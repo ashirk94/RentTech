@@ -15,11 +15,13 @@ namespace RentTech.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Current = "Home";
             return View();
         }
 
         public IActionResult Privacy()
         {
+            ViewBag.Current = "Privacy";
             return View();
         }
 
@@ -31,6 +33,7 @@ namespace RentTech.Controllers
 
         public IActionResult About()
         {
+            ViewBag.Current = "About";
             return View();
         }
     }
