@@ -19,5 +19,6 @@ body {
 
 img {
     max-height: 300px;
-    max-width: 600px;
+    max-width: 300px;
+    margin: auto;
 }

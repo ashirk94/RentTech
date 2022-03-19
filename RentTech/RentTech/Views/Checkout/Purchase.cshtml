@@ -4,7 +4,7 @@
     ViewData["Title"] = "Purchase";
 }
 
-<div class="wrapper">
+<div class="wrapper text-center">
     <div class="checkout container">
         <form id="payment-form" method="post" asp-controller="Checkout" asp-action="Create">
             @Html.HiddenFor(n => n.ItemId)
