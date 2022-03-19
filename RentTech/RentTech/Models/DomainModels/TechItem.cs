@@ -19,6 +19,8 @@ namespace RentTech.Models.DomainModels
         [Required]
         public string Type { get; set; }
         public List<Tag> Tags { get; set; } //free, low-price, item specifics
+
+        public List<Review> Reviews { get; set; }
         public DateTime? RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
         public string OwnerId { get; set; }

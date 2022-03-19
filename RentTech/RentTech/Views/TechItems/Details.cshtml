@@ -2,77 +2,67 @@
 
 @{
     ViewData["Title"] = "Details";
+    TimeZoneInfo tzPacific = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>TechItem</h4>
+
+<div class="text-center">
+    <h1>@Model.Title</h1>
+    <img src="@Model.Thumbnail" alt="@Model.Description" />
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Condition)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Condition)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RentDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReturnDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Owner.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumbnail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Thumbnail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsRented)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsRented)
-        </dd>
-    </dl>
+    <div>
+        @Html.DisplayNameFor(model => model.Description)
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.Price)
+        @Html.DisplayFor(model => model.Price)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.Condition)
+        @Html.DisplayFor(model => model.Condition)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.Type)
+        @Html.DisplayFor(model => model.Type)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.Owner.UserName)
+        @Html.DisplayFor(model => model.Owner.UserName)
+    </div>
+    <a asp-action="AddReview" asp-route-id="@Model?.TechItemId" class="btn btn-primary col-1 mb-3">Review</a>
+    @if (User.IsInRole("Admin") || User.Equals(Model.Owner))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.TechItemId" class="btn btn-secondary col-1 mb-3">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary col-1 mb-3">Back to Browse</a>
+
+
+    @if (Model.Reviews != null && Model.Reviews.Count != 0)
+    {
+        <h5 class="m-3">Reviews:</h5>
+        <div class="d-flex m-3 justify-content-center">
+            @foreach (var review in Model.Reviews)
+            {
+                <div>
+                    <h4 class="m-3">@review.Text</h4>
+                </div>
+                <div>
+                    <strong class="m-3">Rating:</strong>
+                    <h4 class="m-3">@review.Rating</h4>
+                </div>
+                <div>
+                    <strong class="m-3">User:</strong>
+                    <p class="m-3">@review.Reviewer.UserName</p>
+                </div>
+                <div>
+                    <strong class="m-3">Date:</strong>
+                    <p class="m-3">@TimeZoneInfo.ConvertTimeFromUtc(review.ReviewDate, tzPacific).ToString("g")</p>
+                </div>
+            }
+        </div>
+    }
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TechItemId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+

@@ -1,0 +1,23 @@
+﻿@model RentTech.Models.ViewModels.ReviewVM
+
+@{
+    ViewData["Title"] = "Review";
+}
+<div class="text-center m-auto">
+    <h3 class="mb-3">Review this user and item:</h3>
+    <h2>User: @ViewBag.User Item: @ViewBag.Item</h2>
+    <br />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="ReviewText" class="control-label"></label>
+            <textarea placeholder="Add a public review..." class="col-6 form-control" asp-for="ReviewText"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReviewScore" class="control-label"></label>
+            <input placeholder="3" class="col-6 form-control" asp-for="ReviewScore"></input>
+        </div>
+        <input type="hidden" value="@Model.ItemId" asp-for="ItemId" />
+        <button type="submit" class="btn btn-primary mb-3 col-1">Submit</button>
+    </form>
+</div>

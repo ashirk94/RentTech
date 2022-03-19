@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RentTech.Data;
+using RentTech.Models.DataLayer;
 using RentTech.Models.DomainModels;
 using RentTech.Models.ViewModels;
 using System.Web;
@@ -17,10 +18,13 @@ namespace RentTech.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager;
 
+        private ITechRepository _repo;
+
         private IWebHostEnvironment _env;
 
-        public TechItemsController(ApplicationDbContext context, IWebHostEnvironment env, UserManager<AppUser> userMngr)
+        public TechItemsController(ApplicationDbContext context, IWebHostEnvironment env, UserManager<AppUser> userMngr, ITechRepository repo)
         {
+            _repo = repo;
             _env = env;
             _context = context;
             _userManager = userMngr;
@@ -35,6 +39,53 @@ namespace RentTech.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        // review page
+        [Authorize]
+        public async Task<IActionResult> AddReview(int id)
+        {
+            var reviewVM = new ReviewVM
+            {
+                ItemId = id,
+                ReviewText = ""
+            };
+            var item = await _repo.GetById(reviewVM.ItemId);
+            ViewBag.Item = item.Title;
+
+            AppUser user = await _userManager.FindByIdAsync(item.OwnerId);
+            ViewBag.User = user.UserName;
+
+            return View(reviewVM);
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddReview(ReviewVM reviewVM)
+        {
+            // reply with data from vm
+            Review review = new()
+            {
+                Text = reviewVM.ReviewText,
+                TechItemId = reviewVM.ItemId,
+                Rating = reviewVM.ReviewScore
+            };
+            review.Reviewer = await _userManager.GetUserAsync(User);
+
+            TechItem item = await _repo.GetById(reviewVM.ItemId);
+
+
+            // store with post if valid
+            if (ModelState.IsValid && item != null)
+            {
+                if (item.Reviews == null)
+                {
+                    item.Reviews = new List<Review>();
+                }
+                item.Reviews.Add(review);
+                await _repo.Update(item);
+                return RedirectToAction("Index");
+            }
+            return View(reviewVM);
+        }
+
         // GET: TechItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +96,8 @@ namespace RentTech.Controllers
 
             var techItem = await _context.TechItem
                 .Include(t => t.Owner)
+                .Include(t => t.Reviews)
+                .ThenInclude(t => t.Reviewer)
                 .FirstOrDefaultAsync(m => m.TechItemId == id);
             if (techItem == null)
             {
