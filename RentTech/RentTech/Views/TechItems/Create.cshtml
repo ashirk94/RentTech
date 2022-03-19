@@ -44,11 +44,15 @@
                     <option value="Camera">Camera</option>
                     <option value="Phone">Phone</option>
                     <option value="Game Console">Game Console</option>
-                </select> 
+                </select>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="File" class="control-label">Upload Picture</label>
+                <input asp-for="File" type="file" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Item" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -59,5 +63,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

@@ -25,18 +25,7 @@ namespace RentTech.Controllers
             _context = context;
             _userManager = userMngr;
         }
-        //file upload
-        //private string Upload(TechItemVM item)
-        //{
-        //    var dir = _env.ContentRootPath;
 
-        //    using (var fileStream = new FileStream(Path.Combine(dir, $"images/{item.Title}.png"), 
-        //        FileMode.Create, FileAccess.Write))
-        //    {
-        //        item.File.CopyTo(fileStream);
-        //    }
-        //    return item.Title;
-        //}
         // GET: TechItems
         public async Task<IActionResult> Index()
         {
@@ -80,18 +69,28 @@ namespace RentTech.Controllers
         public async Task<IActionResult> Create(TechItemVM vm)
         {
 
-            TechItem techItem = new TechItem
+            string filename = vm.File.FileName;
+            filename = Path.GetFileName(filename);
+            vm.Thumbnail = filename;
+
+            TechItem techItem = new()
             {
                 Title = vm.Title,
                 Description = vm.Description,
                 Condition = vm.Condition,
                 Price = vm.Price,
-                Type = vm.Type
+                Type = vm.Type,
+                Thumbnail = "images/" + filename
             };
+            //file handling
+            string uploadFilePath = Path.Combine(_env.WebRootPath, "images", filename);
 
+            await using var stream = new FileStream(uploadFilePath, FileMode.Create);
+            await vm.File.CopyToAsync(stream);
+
+            //db store
             techItem.Owner = await _userManager.GetUserAsync(User);
             techItem.OwnerId = techItem.Owner.UserId;
-            //techItem.Thumbnail = Upload(vm);
 
             if (ModelState.IsValid)
             {
@@ -99,6 +98,7 @@ namespace RentTech.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(vm);
         }
 

@@ -14,7 +14,7 @@ namespace RentTech.Models.ViewModels
         public string Condition { get; set; }
         public string Type { get; set; }
 
-        //public FormFile File { get; set; }
+        public IFormFile File { get; set; }
 
         public string Nonce { get; set; }
     }
