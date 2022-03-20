@@ -111,6 +111,7 @@ namespace RentTech.Controllers
         [Authorize]
         public IActionResult Create()
         {
+            ViewBag.Current = "Offer";
             return View();
         }
 

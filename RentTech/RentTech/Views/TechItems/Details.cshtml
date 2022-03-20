@@ -31,12 +31,13 @@
         @Html.DisplayNameFor(model => model.Owner.UserName)
         @Html.DisplayFor(model => model.Owner.UserName)
     </div>
-    <a asp-action="AddReview" asp-route-id="@Model?.TechItemId" class="btn btn-primary col-1 mb-3">Review</a>
+    <a asp-action="AddReview" asp-route-id="@Model?.TechItemId" class="btn btn-info col-1 mb-3">Review</a>
     @if (User.IsInRole("Admin") || User.Equals(Model.Owner))
     {
-        <a asp-action="Edit" asp-route-id="@Model?.TechItemId" class="btn btn-secondary col-1 mb-3">Edit</a>
+        <a asp-action="Edit" asp-route-id="@Model?.TechItemId" class="btn btn-warning col-1 mb-3">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model?.TechItemId" class="btn btn-danger col-1 mb-3">Delete</a>
     }
-    <a asp-action="Index" class="btn btn-secondary col-1 mb-3">Back to Browse</a>
+    <a asp-action="Index" class="btn btn-primary col-3 mb-3">Back to Browse</a>
 
 
     @if (Model.Reviews != null && Model.Reviews.Count != 0)

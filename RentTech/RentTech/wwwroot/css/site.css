@@ -22,3 +22,10 @@ img {
     max-width: 300px;
     margin: auto;
 }
+a, img:hover {
+    max-height: 320px;
+    max-width: 320px;
+}
+.btn {
+    border-radius: 10px;
+}

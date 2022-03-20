@@ -27,10 +27,13 @@
                             <a class="nav-link @(ViewBag.Current == "Browse" ? "active" : "")" asp-area="" asp-controller="TechItems" asp-action="Index">Browse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @(ViewBag.Current == "Offer" ? "active" : "")" asp-area="" asp-controller="TechItems" asp-action="Create">Offer</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @(ViewBag.Current == "About" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link @(ViewBag.Current == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     @{
