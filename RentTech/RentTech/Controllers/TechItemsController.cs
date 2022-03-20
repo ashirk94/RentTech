@@ -39,6 +39,49 @@ namespace RentTech.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        // add tags
+        [Authorize]
+        public async Task<IActionResult> AddTag(int id)
+        {
+            var tagVM = new TagVM
+            {
+                ItemId = id,
+                Tag = ""
+            };
+            var item = await _repo.GetById(tagVM.ItemId);
+            ViewBag.Item = item.Title;
+
+            AppUser user = await _userManager.FindByIdAsync(item.OwnerId);
+
+            return View(tagVM);
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddTag(TagVM tagVM)
+        {
+            //data from vm
+            Tag tag = new()
+            {
+                Text = tagVM.Tag,
+                TechItemId = tagVM.ItemId
+            };
+
+            TechItem item = await _repo.GetById(tagVM.ItemId);
+
+
+            // store if valid
+            if (ModelState.IsValid && item != null)
+            {
+                if (item.Tags == null)
+                {
+                    item.Tags = new List<Tag>();
+                }
+                item.Tags.Add(tag);
+                await _repo.Update(item);
+                return RedirectToAction("Index");
+            }
+            return View(tagVM);
+        }
         // review page
         [Authorize]
         public async Task<IActionResult> AddReview(int id)
@@ -60,7 +103,7 @@ namespace RentTech.Controllers
         [HttpPost]
         public async Task<IActionResult> AddReview(ReviewVM reviewVM)
         {
-            // reply with data from vm
+            // data from vm
             Review review = new()
             {
                 Text = reviewVM.ReviewText,
@@ -72,7 +115,7 @@ namespace RentTech.Controllers
             TechItem item = await _repo.GetById(reviewVM.ItemId);
 
 
-            // store with post if valid
+            // store if valid
             if (ModelState.IsValid && item != null)
             {
                 if (item.Reviews == null)
@@ -98,7 +141,9 @@ namespace RentTech.Controllers
                 .Include(t => t.Owner)
                 .Include(t => t.Reviews)
                 .ThenInclude(t => t.Reviewer)
+                .Include(t => t.Tags)
                 .FirstOrDefaultAsync(m => m.TechItemId == id);
+
             if (techItem == null)
             {
                 return NotFound();

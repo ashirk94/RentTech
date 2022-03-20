@@ -1,0 +1,22 @@
+﻿@model RentTech.Models.ViewModels.TagVM
+
+@{
+    ViewData["Title"] = "Tags";
+}
+<div class="text-center m-auto">
+    <h3 class="mb-3">Tag this item:</h3>
+    <h2>@ViewBag.Item</h2>
+    <br />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Tag" class="control-label"></label>
+            <input placeholder="Add tag here" class="col-6 form-control" asp-for="Tag"></input>
+        </div>
+        <input type="hidden" value="@Model.ItemId" asp-for="ItemId" />
+        <button type="submit" class="btn btn-primary mb-3 col-1">Submit</button>
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

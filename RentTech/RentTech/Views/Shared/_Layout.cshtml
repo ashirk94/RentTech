@@ -21,19 +21,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewBag.Current == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "Browse" ? "active" : "")" asp-area="" asp-controller="TechItems" asp-action="Index">Browse</a>
+                            <a class="nav-link @(ViewBag.Current == "Browse" ? "active" : "")" asp-controller="TechItems" asp-action="Index">Browse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "Offer" ? "active" : "")" asp-area="" asp-controller="TechItems" asp-action="Create">Offer</a>
+                            <a class="nav-link @(ViewBag.Current == "Offer" ? "active" : "")" asp-controller="TechItems" asp-action="Create">Offer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "About" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link @(ViewBag.Current == "About" ? "active" : "")" asp-controller="Home" asp-action="About">About</a>
                         </li>
                                                 <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Current == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @(ViewBag.Current == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     @{

@@ -7,25 +7,24 @@
     @if (User.IsInRole("Admin"))
     {
         <li class="nav-item">
-            <a class="btn nav-link m-auto @(ViewBag.Current == "Admin" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Admin">Manage Users</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Admin" ? "active" : "")" asp-action="Index" asp-controller="Admin">Manage Users</a>
         </li>
         <li class="nav-item">
-            <a class="btn nav-link m-auto @(ViewBag.Current == "Reviews" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Reviews">Manage Reviews</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Reviews" ? "active" : "")" asp-action="Index" asp-controller="Reviews">Manage Reviews</a>
         </li>
         <li class="nav-item">
-            <a class="btn nav-link m-auto @(ViewBag.Current == "Tags" ? "active" : "")" asp-area="" asp-action="Index" asp-controller="Tags">Manage Tags</a>
+            <a class="btn nav-link m-auto @(ViewBag.Current == "Tags" ? "active" : "")" asp-action="Index" asp-controller="Tags">Manage Tags</a>
         </li>
     }
     @if (SignInManager.IsSignedIn(User))
     {
     // signed-in
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="btn nav-link m-auto" asp-action="Manage" asp-controller="Account">@User.Identity?.Name</a>
         </li>
 
         <li class="nav-item">
-            <form method="post" asp-action="LogOut" asp-controller="Account"
-              asp-area="">
+            <form method="post" asp-action="LogOut" asp-controller="Account">
                 <button type="submit"
                     class="btn btn-link nav-link m-auto">
                     Log Out
