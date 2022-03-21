@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RentTech.Models.DataLayer;
 using RentTech.Models.DomainModels;
@@ -6,6 +7,7 @@ using RentTech.Models.ViewModels;
 
 namespace RentTech.Controllers
 {
+    [Authorize]
     public class CheckoutController : Controller
     {
         private readonly ITechRepository _techRepository;
@@ -18,7 +20,7 @@ namespace RentTech.Controllers
         }
         public async Task<IActionResult> Purchase(int id)
         {
-            //used linkin learning payment gateway tutorial as guide
+            //used linkedin learning payment gateway tutorial as guide
 
             var item = await _techRepository.GetById(id);
             if (item == null) return NotFound();

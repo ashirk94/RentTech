@@ -31,12 +31,21 @@ namespace RentTech.Controllers
         }
 
         // GET: TechItems
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string SearchString)
         {
-            //TODO: make separate page for managing items (admin link)
             ViewBag.Current = "Browse";
-            var applicationDbContext = _context.TechItem.Include(t => t.Owner);
-            return View(await applicationDbContext.ToListAsync());
+
+            ViewData["CurrentFilter"] = SearchString;
+
+            //var items = _context.TechItem.Include(t => t.Owner);
+            var items = _repo.TechItems;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                items = items.Where(i => i.Title.Contains(SearchString));
+            }
+
+            return View(items);
         }
 
         // add tags
@@ -167,10 +176,10 @@ namespace RentTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TechItemVM vm)
         {
-
+            //file path storage
             string filename = vm.File.FileName;
             filename = Path.GetFileName(filename);
-            vm.Thumbnail = filename;
+            vm.Thumbnail = "../../images/" + filename;
 
             TechItem techItem = new()
             {
@@ -179,7 +188,7 @@ namespace RentTech.Controllers
                 Condition = vm.Condition,
                 Price = vm.Price,
                 Type = vm.Type,
-                Thumbnail = "images/" + filename
+                Thumbnail = vm.Thumbnail
             };
             //file handling
             string uploadFilePath = Path.Combine(_env.WebRootPath, "images", filename);

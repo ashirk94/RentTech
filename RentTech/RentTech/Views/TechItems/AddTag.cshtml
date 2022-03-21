@@ -11,7 +11,7 @@
     <form method="post">
         <div class="form-group">
             <label asp-for="Tag" class="control-label"></label>
-            <input placeholder="Add tag here" class="col-6 form-control" asp-for="Tag"></input>
+            <input placeholder="Add tag here" class="col-6 form-control" asp-for="Tag"/>
         </div>
         <input type="hidden" value="@Model.ItemId" asp-for="ItemId" />
         <button type="submit" class="btn btn-primary mb-3 col-1">Submit</button>

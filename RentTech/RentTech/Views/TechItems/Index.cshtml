@@ -4,6 +4,14 @@
     ViewData["Title"] = "Index";
 }
 <div class="container text-center">
+    <h3>Search:</h3>
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <input type="text" placeholder="Filter by title..." name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary btn-sm"/>
+        </div>
+    </form>
+    <br/><br/><br/><br/>
     @foreach (var item in Model)
     {
             <h2>
