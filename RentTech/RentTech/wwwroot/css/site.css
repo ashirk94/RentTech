@@ -21,6 +21,7 @@ img {
     max-height: 300px;
     max-width: 300px;
     margin: auto;
+    transition: 250ms ease-in-out;
 }
 a img:hover {
     max-height: 320px;
@@ -28,4 +29,5 @@ a img:hover {
 }
 .btn {
     border-radius: 10px;
+    transition: 100ms ease-in-out;
 }
