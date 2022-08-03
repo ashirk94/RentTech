@@ -1,10 +1,3 @@
 {
-  "dependencies": {
-    "mssql2": {
-      "secretStore": "AzureAppSettings",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/rent-tech/databases/rent-tech",
-      "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:AzureConnection"
-    }
-  }
+  "dependencies": {}
 }
