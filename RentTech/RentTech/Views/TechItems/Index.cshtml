@@ -12,8 +12,10 @@
         </div>
     </form>
     <br/><br/><br/><br/>
+    <div class="d-flex list">
     @foreach (var item in Model)
     {
+        <div class="item">
             <h2>
                 @Html.DisplayFor(modelItem => item.Title)
             </h2>
@@ -31,5 +33,7 @@
             </h4>
         <a href="/TechItems/Details/@item.TechItemId"><img src="@item.Thumbnail" alt="@item.Description"/></a><br />
         <a class="btn btn-primary mb-5" asp-controller="Checkout" asp-action="Purchase" asp-route-id="@item.TechItemId">Rent</a>
+        </div>
     }
+    </div>
 </div>

@@ -31,3 +31,12 @@ a img:hover {
     border-radius: 10px;
     transition: 100ms ease-in-out;
 }
+.item {
+    margin: 50px;
+    max-width: 25%;
+}
+.list {
+    max-width: 80%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
