@@ -36,7 +36,8 @@ a img:hover {
     max-width: 25%;
 }
 .list {
-    max-width: 80%;
     margin: 0 auto;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
 }
