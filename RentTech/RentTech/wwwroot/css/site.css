@@ -33,11 +33,20 @@ a img:hover {
 }
 .item {
     margin: 50px;
-    max-width: 25%;
+    max-width: 40%;
+    height: 500px;
 }
 .list {
     margin: 0 auto;
     flex-wrap: wrap;
     justify-content: center;
     gap: 50px;
+    align-items: center;
+}
+.home {
+    margin: 0 auto;
+}
+.btn-home {
+    margin-left: 20px;
+    margin-right: 20px;
 }
