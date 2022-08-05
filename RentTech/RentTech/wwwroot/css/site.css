@@ -20,7 +20,7 @@ body {
 img {
     max-height: 300px;
     max-width: 300px;
-    margin: auto;
+    margin: 10px auto;
     transition: 250ms ease-in-out;
 }
 a img:hover {
