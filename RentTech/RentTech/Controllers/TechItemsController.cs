@@ -31,19 +31,27 @@ namespace RentTech.Controllers
         }
 
         // GET: TechItems
-        public IActionResult Index(string SearchString)
+        public async Task<IActionResult> Index(string SearchString)
         {
             ViewBag.Current = "Browse";
 
             ViewData["CurrentFilter"] = SearchString;
 
             //var items = _context.TechItem.Include(t => t.Owner);
-            var items = _repo.TechItems;
+            var items = new List<TechItem>();
 
             if (!String.IsNullOrEmpty(SearchString))
             {
-                items = items.Where(i => i.Title.Contains(SearchString));
+                items = await _repo.TechItems.Include(i => i.Tags).Where(i => i.Title.Contains(SearchString) 
+            || i.Description.Contains(SearchString)
+            || i.Tags.Any(t => t.Text == SearchString)).ToListAsync(); 
             }
+            else
+            {
+                items = await _repo.TechItems.Include(i => i.Tags).ToListAsync();
+            }
+            
+
 
             return View(items);
         }
