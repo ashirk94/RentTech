@@ -29,4 +29,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\tech-rental - Web Deploy.pubxml.user" />
+  </ItemGroup>
+
 </Project>
