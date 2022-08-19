@@ -21,7 +21,7 @@
     // signed-in
         <li class="nav-item">
             @*@<a class="btn nav-link m-auto" asp-action="Manage" asp-controller="Account">@User.Identity?.Name</a>*@
-            <p class="btn nav-link m-auto">@User.Identity?.Name</p>
+            <p class="btn nav-link m-auto active" id="noclick">@User.Identity?.Name</p>
         </li>
 
         <li class="nav-item">
