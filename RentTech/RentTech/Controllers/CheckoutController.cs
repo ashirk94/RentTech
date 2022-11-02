@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RentTech.Models.DataLayer;
 using RentTech.Models.DomainModels;
 using RentTech.Models.ViewModels;
+using Microsoft.Extensions.Configuration;
 
 namespace RentTech.Controllers
 {
@@ -12,20 +13,28 @@ namespace RentTech.Controllers
     {
         private readonly ITechRepository _techRepository;
         private readonly IBraintreeService _braintreeService;
+        private readonly IConfiguration _configuration;
 
-        public CheckoutController(ITechRepository techRepository, IBraintreeService braintreeService)
+        public CheckoutController(ITechRepository techRepository, IBraintreeService braintreeService, IConfiguration configuration)
         {
             _techRepository = techRepository;
             _braintreeService = braintreeService;
+            _configuration = configuration;
         }
         public async Task<IActionResult> Purchase(int id)
         {
-            //used linkedin learning payment gateway tutorial as guide
+            //braintree payment gateway with paypal
 
             var item = await _techRepository.GetById(id);
             if (item == null) return NotFound();
 
-            var gateway = _braintreeService.GetGateway();
+            var gateway = new BraintreeGateway
+            {
+                Environment = Braintree.Environment.SANDBOX,
+                MerchantId = _configuration.GetValue("MerchantId", ""),
+                PublicKey = _configuration.GetValue("PublicKey", ""),
+                PrivateKey = _configuration.GetValue("PrivateKey", "")
+            };
             var clientToken = gateway.ClientToken.Generate();
             ViewBag.ClientToken = clientToken;
 
@@ -44,7 +53,13 @@ namespace RentTech.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TechItemVM model)
         {
-            var gateway = _braintreeService.GetGateway();
+            var gateway = new BraintreeGateway
+            {
+                Environment = Braintree.Environment.SANDBOX,
+                MerchantId = _configuration.GetValue("MerchantId", ""),
+                PublicKey = _configuration.GetValue("PublicKey", ""),
+                PrivateKey = _configuration.GetValue("PrivateKey", "")
+            };
             var item = await _techRepository.GetById(model.ItemId);
 
             var request = new TransactionRequest
